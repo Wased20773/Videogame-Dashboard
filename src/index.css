@@ -1,0 +1,42 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* For consistent styling */
+  color: var(--High-emphasis-light-text); /* by default */
+  background-color: var(--Background-HTML);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* --- Color Palette --- */
+  /* Text */
+  --High-emphasis-light-text: rgb(220, 220, 220);
+  --Medium-emphasis-light-text: rgb(176, 176, 176);
+  --Low-emphasis-light-text: rgb(132, 132, 132);
+
+  --High-emphasis-dark-text: rgb(30, 30, 30);
+  --Medium-emphasis-dark-text: rgb(50, 50, 50);
+  --Low-emphasis-dark-text: rgb(70, 70, 70);
+
+  /* Background */
+  --Background-HTML: rgb(27, 27, 27);
+
+  /* Buttons */
+  --Btn-primary: rgb(56, 139, 248);
+  --Btn-secondary: rgb(202, 202, 202);
+
+  /* --- Special Colors --- */
+  /* Steam */
+  --Theme-Steam-dark: rgb(23, 26, 33);
+  --Theme-Steam-light: rgb(42, 71, 94);
+
+  /* IGDB */
+  --Theme-IGDB-dark: rgb(56, 22, 107);
+  --Theme-IGDB-light: rgb(139, 77, 229);
+}
+
+body {
+  margin: 0;
+}
