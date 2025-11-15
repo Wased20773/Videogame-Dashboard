@@ -1,5 +1,3 @@
-import SteamPNG from "../assets/steam.png";
-import IGDBPNG from "../assets/igdb.png";
 import "../styles/home.css";
 
 const APIinfoCard = ({ api, theme, width_img }) => {

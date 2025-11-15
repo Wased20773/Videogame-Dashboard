@@ -1,6 +1,3 @@
-import React from "react";
-import SteamPNG from "../assets/steam.png";
-import IGDBPNG from "../assets/igdb.png";
 import "../styles/home.css";
 import APIinfoCard from "../components/APIinfoCard";
 import { APIinfo } from "../assets/data/APIinfo.jsx";
