@@ -1,5 +1,5 @@
 const ColumnChart = () => {
-  return <h1>Top Selling</h1>;
+  return <h1>Column Chart</h1>;
 };
 
 export default ColumnChart;

@@ -1,5 +1,5 @@
 const Histogram = () => {
-  return <h1>Trends</h1>;
+  return <h1>Histogram</h1>;
 };
 
 export default Histogram;

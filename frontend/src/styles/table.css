@@ -1,0 +1,95 @@
+.table-container {
+  /* width: 600px; */
+  border: var(--Table-border);
+  background-color: var(--Low-emphasis-dark-text);
+  margin: 0 auto;
+  /* background: black; */
+  /* overflow: hidden; */
+}
+
+.table-head {
+  background: var(--Table-header-bg);
+  color: var(--High-emphasis-dark-text);
+}
+.table-head > tr > th {
+  padding: 2px 5px;
+}
+
+.table-body {
+  color: var(--Medium-emphasis-dark-text);
+}
+
+.table-row {
+  background: var(--Table-bg-row-light);
+  text-align: center;
+  height: 50px;
+}
+
+.table-row .name {
+  text-align: start;
+}
+
+.table-row:nth-child(2n) {
+  background: var(--Table-bg-row-dark);
+}
+
+.table-row:hover {
+  background: var(--Table-row-hover);
+}
+
+.table-td {
+  padding: 0;
+  height: 100%;
+}
+
+.table-td.name,
+.table-td.date,
+.table-td.price {
+  padding: 0 7px;
+}
+
+.table-td.name {
+  width: 400px;
+}
+
+.table-td.date {
+  width: 100px;
+}
+
+.table-td.price {
+  width: 50px;
+}
+
+.table-img {
+  display: flex;
+  justify-content: center;
+}
+
+.table-buttons {
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.table-prev-button,
+.table-next-button {
+  background-color: var(--Btn-secondary);
+  border: none;
+  border-radius: 5px;
+
+  width: 80px;
+  height: 25px;
+}
+
+.table-prev-button:hover,
+.table-next-button:hover {
+  background-color: rgba(202, 202, 202, 0.7);
+  cursor: pointer;
+}
+
+.deactivate-button {
+  background-color: rgba(202, 202, 202, 0.7) !important;
+  color: var(--Low-emphasis-dark-text);
+  cursor: default !important;
+}

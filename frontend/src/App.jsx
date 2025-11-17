@@ -3,12 +3,13 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home.jsx";
 import Mission from "./pages/Mission.jsx";
 import ColumnChart from "./components/Charts/ColumnChart.jsx";
-import Table from "./components/Charts/Table.jsx";
+// import Table from "./components/Charts/Table.jsx";
 import PieChart from "./components/Charts/PieChart.jsx";
 import Histogram from "./components/Charts/Histogram.jsx";
 
 import Compare from "./pages/Compare.jsx";
 import Footer from "./components/Footer.jsx";
+import NewReleases from "./pages/NewReleases.jsx";
 
 function App() {
   return (
@@ -25,7 +26,10 @@ function App() {
             path="/visualizations/top-selling"
             Component={ColumnChart}
           ></Route>
-          <Route path="/visualizations/new-releases" Component={Table}></Route>
+          <Route
+            path="/visualizations/new-releases"
+            Component={NewReleases}
+          ></Route>
           <Route
             path="/visualizations/most-common"
             Component={PieChart}

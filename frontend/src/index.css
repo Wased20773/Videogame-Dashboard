@@ -42,6 +42,14 @@
 
   /* --- Measurement Variables --- */
   --nav-height: 50px;
+
+  /* For charts/table */
+  --Table-border-color: rgb(132, 132, 132);
+  --Table-border: 2px solid var(--Table-border-color);
+  --Table-bg-row-light: rgb(220, 220, 220);
+  --Table-bg-row-dark: rgb(176, 176, 176);
+  --Table-header-bg: rgb(220, 80, 80);
+  --Table-row-hover: rgb(150, 200, 150);
 }
 
 html,

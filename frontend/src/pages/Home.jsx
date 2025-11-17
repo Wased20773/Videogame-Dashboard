@@ -1,6 +1,6 @@
 import "../styles/home.css";
 import APIinfoCard from "../components/APIinfoCard";
-import { APIinfo } from "../assets/data/APIinfo.jsx";
+import { APIinfo } from "../assets/data/APIinfo.js";
 const Home = () => {
   return (
     <div>
