@@ -13,8 +13,8 @@ const Home = () => {
 
       <div className="cards-container">
         {/* Render each card with their API info  */}
-        {Object.values(APIinfo).map((api) => (
-          <APIinfoCard api={api} theme={api.theme} width_img={50} />
+        {Object.values(APIinfo).map((api, idx) => (
+          <APIinfoCard key={idx} api={api} theme={api.theme} width_img={50} />
         ))}
       </div>
     </div>

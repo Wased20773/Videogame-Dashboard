@@ -14,7 +14,7 @@ import MostCommon from "./pages/MostCommon.jsx";
 
 function App() {
   return (
-    <div className="app-container">
+    <main className="app-container">
       <Navbar />
 
       <div className="main-contents">
@@ -48,7 +48,7 @@ function App() {
       </div>
 
       <Footer />
-    </div>
+    </main>
   );
 }
 

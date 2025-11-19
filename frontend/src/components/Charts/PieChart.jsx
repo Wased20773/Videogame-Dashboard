@@ -57,7 +57,7 @@ const PieChart = ({ genreCount }) => {
       <div className="others-container">
         <div>Others Genres and Counts</div>
         {labels_others.map((label, i) => (
-          <div className="others-contents">
+          <div key={i} className="others-contents">
             {label}: <div>{counts_others[i]}</div>
           </div>
         ))}
