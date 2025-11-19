@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@axe-core/react": "^4.11.0",
+    "axe-core": "^4.11.0",
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
     "chart.js": "^4.5.1",
