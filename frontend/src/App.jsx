@@ -10,6 +10,7 @@ import Histogram from "./components/Charts/Histogram.jsx";
 import Compare from "./pages/Compare.jsx";
 import Footer from "./components/Footer.jsx";
 import NewReleases from "./pages/NewReleases.jsx";
+import MostCommon from "./pages/MostCommon.jsx";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           ></Route>
           <Route
             path="/visualizations/most-common"
-            Component={PieChart}
+            Component={MostCommon}
           ></Route>
           <Route path="/visualizations/trends" Component={Histogram}></Route>
 
