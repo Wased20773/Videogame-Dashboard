@@ -56,6 +56,10 @@
   margin: 0 0 0 10px;
 }
 
+.cards-api-heading ~ p {
+  font-size: var(--Desktop-text);
+}
+
 .cards-api-documentation-link {
   text-decoration: none;
   color: var(--Medium-emphasis-light-text);
@@ -73,3 +77,28 @@
 .igdb-theme {
   background: linear-gradient(var(--Theme-IGDB-light), var(--Theme-IGDB-dark));
 }
+
+/* tablet */
+@media (max-width: 1200px) {
+  .hero-container {
+    height: 400px;
+  }
+  .cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+  .cards-api {
+    min-width: 300px;
+    max-width: 300px;
+    height: 200px;
+    padding: 15px;
+  }
+  .cards-api-heading ~ p {
+    font-size: var(--Tablet-text);
+  }
+}
+
+/* Mobile */

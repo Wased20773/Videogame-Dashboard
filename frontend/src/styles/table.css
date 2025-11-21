@@ -1,32 +1,44 @@
+/* --- Table Container --- */
 .table-container {
-  /* width: 600px; */
-  border: var(--Table-border);
-  background-color: var(--Low-emphasis-dark-text);
-  margin: 0 auto;
-  /* background: black; */
-  /* overflow: hidden; */
+  width: 95%;
+  max-width: 1000px;
+
+  margin: 20px auto;
+  border-radius: 10px;
+
+  border: 1px solid var(--Table-border-color);
+
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+
+  /* allows for table to have border-radius */
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
+/* --- Header --- */
 .table-head {
   background: var(--Table-header-bg);
-  color: var(--High-emphasis-dark-text);
+  color: var(--High-emphasis-light-text);
 }
+
 .table-head > tr > th {
-  padding: 2px 5px;
+  padding: 10px 16px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid var(--Table-border-color);
 }
 
-.table-body {
-  color: var(--Medium-emphasis-dark-text);
+.table-head > tr > .name {
+  text-align: left;
 }
 
+/* --- Body --- */
 .table-row {
   background: var(--Table-bg-row-light);
-  text-align: center;
-  height: 50px;
-}
-
-.table-row .name {
-  text-align: start;
+  height: 70px;
+  transition: 0.5s;
+  color: var(--High-emphasis-light-text);
 }
 
 .table-row:nth-child(2n) {
@@ -34,39 +46,30 @@
 }
 
 .table-row:hover {
+  transition: 0.5s;
   background: var(--Table-row-hover);
+  color: var(--High-emphasis-dark-text);
 }
 
-.table-td {
-  padding: 0;
-  height: 100%;
+td {
+  padding: 10px 16px;
+  font-size: 14px;
+  text-align: center;
 }
 
-.table-td.name,
-.table-td.date,
-.table-td.price {
-  padding: 0 7px;
-}
-
-.table-td.name {
-  width: 400px;
-}
-
-.table-td.date {
-  width: 100px;
-}
-
-.table-td.price {
-  width: 50px;
+.name {
+  text-align: left;
 }
 
 .table-img {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
+/* --- Buttons (Prev / Next) --- */
 .table-buttons {
-  margin: 15px auto;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -74,22 +77,27 @@
 
 .table-prev-button,
 .table-next-button {
-  background-color: var(--Btn-secondary);
+  background: var(--Btn-secondary);
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
 
   width: 80px;
-  height: 25px;
+  height: 30px;
+
+  transition: 0.3s;
 }
 
 .table-prev-button:hover,
 .table-next-button:hover {
-  background-color: rgba(202, 202, 202, 0.7);
+  transition: 0.3s;
+  background: rgba(202, 202, 202, 0.75);
   cursor: pointer;
+  transform: translateY(-2px);
 }
 
 .deactivate-button {
-  background-color: rgba(202, 202, 202, 0.7) !important;
+  background-color: rgba(202, 202, 202, 0.35) !important;
   color: var(--Low-emphasis-dark-text);
   cursor: default !important;
+  transform: none !important;
 }

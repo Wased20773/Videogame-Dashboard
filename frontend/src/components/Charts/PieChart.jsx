@@ -52,8 +52,11 @@ const PieChart = ({ genreCount }) => {
   };
 
   return (
-    <div style={{ width: "500px", height: "500px" }}>
-      <Pie data={data} />
+    <div>
+      <div style={{ width: 500, height: 500 }}>
+        <Pie data={data} />
+      </div>
+
       <div className="others-container">
         <div>Others Genres and Counts</div>
         {labels_others.map((label, i) => (

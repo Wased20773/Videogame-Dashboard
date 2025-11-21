@@ -23,18 +23,18 @@ function Table({ data, limit }) {
         <thead className="table-head">
           <tr>
             <th>Thumbnail</th>
-            <th>Name</th>
+            <th className="name">Name</th>
             <th>Release Date</th>
             <th>Price</th>
             <th>Rating</th>
           </tr>
         </thead>
-        <tbody className="table-body">
+        <tbody>
           {data
             .slice(renderCountPosition - limit, renderCountPosition)
             .map((game) => (
               <tr key={game.id} className="table-row">
-                <td className="table-td">
+                <td>
                   <div className="table-img">
                     <img
                       src={game.img_small}
@@ -44,16 +44,16 @@ function Table({ data, limit }) {
                     />
                   </div>
                 </td>
-                <td className="table-td name">{game.name}</td>
-                <td className="table-td date">{game.release_date}</td>
-                <td className="table-td price">
+                <td className="name">{game.name}</td>
+                <td>{game.release_date}</td>
+                <td>
                   {game.price_final !== 0 ? `$${game.price_final}` : "Free"}
                 </td>
-                <td className="table-td">
+                <td>
                   <div className="table-img">
                     <img
                       src={DJCTQInfo[`${game.dejus_ratings.rating}`].img}
-                      width={30}
+                      height={50}
                       alt={`age rating in DJCTQ for ${game.name}`}
                     />
                   </div>

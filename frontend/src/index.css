@@ -1,3 +1,8 @@
+/* Desktop size: 1090px >= */
+/* Tablet size: 768px - 1089px */
+/* Large Mobile View size: 481px - 767px */
+/* Mobile View size: 480 <= */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
@@ -9,6 +14,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* --- Font Sizes --- */
+  --Desktop-text: 16px;
+  --Tablet-text: 15px;
+  --Mobile-text: 14px;
 
   /* --- Color Palette --- */
   /* Text */
@@ -46,10 +56,10 @@
   /* For charts/table */
   --Table-border-color: rgb(132, 132, 132);
   --Table-border: 2px solid var(--Table-border-color);
-  --Table-bg-row-light: rgb(220, 220, 220);
-  --Table-bg-row-dark: rgb(176, 176, 176);
-  --Table-header-bg: rgb(220, 80, 80);
-  --Table-row-hover: rgb(150, 200, 150);
+  --Table-bg-row-light: rgb(87, 87, 87);
+  --Table-bg-row-dark: rgb(59, 59, 59);
+  --Table-header-bg: rgb(20, 20, 20);
+  --Table-row-hover: rgb(196, 196, 196);
 }
 
 html,
@@ -71,4 +81,8 @@ body,
 
 h1 {
   text-align: center;
+}
+
+p {
+  margin: 0;
 }

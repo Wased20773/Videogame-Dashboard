@@ -13,7 +13,7 @@ const APIinfoCard = ({ api, theme, width_img }) => {
           />
           <h3 className="cards-api-h3">{api.name}</h3>
         </div>
-        <div>{api.info}</div>
+        <p>{api.info}</p>
       </div>
       <a
         href={api.documentation[0].url}
