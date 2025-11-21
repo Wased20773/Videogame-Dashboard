@@ -19,7 +19,7 @@ const APIinfoCard = ({ api, theme, width_img }) => {
         href={api.documentation[0].url}
         className="cards-api-documentation-link"
       >
-        Official Documentation
+        <p>Official Documentation</p>
       </a>
     </div>
   );

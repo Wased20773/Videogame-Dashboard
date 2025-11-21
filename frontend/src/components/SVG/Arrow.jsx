@@ -1,7 +1,7 @@
-const DownArrow = ({ rotate, stroke, width }) => {
+const Arrow = ({ rotate, degrees, stroke, width }) => {
   return (
     <svg
-      className={`${rotate && "rotate-180"}`}
+      className={`${rotate && `rotate-${degrees}`}`}
       style={{
         display: "inline-block",
         transform: "translateY(2px)",
@@ -34,4 +34,4 @@ const DownArrow = ({ rotate, stroke, width }) => {
   );
 };
 
-export default DownArrow;
+export default Arrow;

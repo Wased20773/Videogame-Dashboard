@@ -16,9 +16,23 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* --- Font Sizes --- */
-  --Desktop-text: 16px;
-  --Tablet-text: 15px;
-  --Mobile-text: 14px;
+  /* paragraphs */
+  --Desktop-p: 16px;
+  --Tablet-p: 15px;
+  --Mobile-p: 14px;
+
+  /* headers */
+  --Desktop-h1: 32px;
+  --Desktop-h2: 24px;
+  --Desktop-h3: 18px;
+
+  --Tablet-h1: 30px;
+  --Tablet-h2: 22px;
+  --Tablet-h3: 16px;
+
+  --Mobile-h1: 28px;
+  --Mobile-h2: 20px;
+  --Mobile-h3: 16px;
 
   /* --- Color Palette --- */
   /* Text */
@@ -79,10 +93,74 @@ body,
   flex: 1;
 }
 
-h1 {
-  text-align: center;
+button {
+  padding: 0;
 }
 
+h1 {
+  text-align: center;
+  font-size: var(--Desktop-h1);
+}
+h2 {
+  font-size: var(--Desktop-h2);
+}
+h3 {
+  font-size: var(--Desktop-h3);
+}
 p {
   margin: 0;
+  font-size: var(--Desktop-p);
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1090px) {
+  h1 {
+    text-align: center;
+    font-size: var(--Tablet-h1);
+  }
+  h2 {
+    font-size: var(--Tablet-h2);
+  }
+  h3 {
+    font-size: var(--Tablet-h3);
+  }
+  p {
+    margin: 0;
+    font-size: var(--Tablet-p);
+  }
+}
+/* Large Mobile */
+@media (min-width: 481px) and (max-width: 767px) {
+  h1 {
+    text-align: center;
+    font-size: var(--Tablet-h1);
+  }
+  h2 {
+    font-size: var(--Tablet-h2);
+  }
+  h3 {
+    font-size: var(--Tablet-h3);
+  }
+  p {
+    margin: 0;
+    font-size: var(--Tablet-p);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  h1 {
+    text-align: center;
+    font-size: var(--Mobile-h1);
+  }
+  h2 {
+    font-size: var(--Mobile-h2);
+  }
+  h3 {
+    font-size: var(--Mobile-h3);
+  }
+  p {
+    margin: 0;
+    font-size: var(--Mobile-p);
+  }
 }

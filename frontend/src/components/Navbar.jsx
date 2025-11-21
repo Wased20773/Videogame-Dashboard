@@ -1,13 +1,18 @@
 import { Link, useLocation } from "react-router-dom";
-import DownArrow from "./SVG/DownArrow.jsx";
+import Arrow from "./SVG/Arrow.jsx";
 import "../styles/navbar.css";
 import { useEffect, useState } from "react";
+import BurgerButton from "./SVG/BurgerButton.jsx";
 
 const Navbar = () => {
   const [dropdownClicked, setDropDownClicked] = useState(false);
-
+  const [openSideBar, setOpenSideBar] = useState(false);
   // used to indicate what URL path we are in
   const location = useLocation();
+
+  useEffect(() => {
+    console.log(openSideBar);
+  }, [openSideBar]);
 
   // Just for testing
   useEffect(() => {
@@ -16,10 +21,11 @@ const Navbar = () => {
 
   useEffect(() => {
     setDropDownClicked(false);
+    setOpenSideBar(false);
   }, [location.pathname]);
 
   return (
-    <>
+    <div>
       <nav className="nav-container">
         <ul className="nav-list">
           {/* Home */}
@@ -55,7 +61,12 @@ const Navbar = () => {
               onClick={() => setDropDownClicked((prev) => !prev)}
             >
               Visualization
-              <DownArrow rotate={dropdownClicked} stroke={10} width={15} />
+              <Arrow
+                rotate={dropdownClicked}
+                degrees={180}
+                stroke={10}
+                width={15}
+              />
             </Link>
           </li>
 
@@ -71,6 +82,40 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
+
+      <nav className="nav-container-mobile">
+        <ul className="nav-list left">
+          <li className="nav-item">
+            <div
+              className="burger-btn"
+              onClick={() => setOpenSideBar((prev) => !prev)}
+            >
+              <BurgerButton height={35} stroke={1} />
+            </div>
+          </li>
+        </ul>
+
+        <ul className="nav-list right">
+          {/* Home */}
+          <li className={`nav-item ${location.pathname === "/" && "active"}`}>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+          </li>
+
+          {/* Compare */}
+          <li
+            className={`nav-item ${
+              location.pathname === "/compare" && "active"
+            }`}
+          >
+            <Link to="/compare" className="nav-link nav-compare">
+              Compare
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
       {/* Drop Down Options
           - Column Chart (top-selling)
             - genres
@@ -87,8 +132,14 @@ const Navbar = () => {
             - release year trends
         */}
       {/* Drop Down Options List */}
-
       <div className={`dropdown-container ${dropdownClicked && "open"}`}>
+        <div
+          className="nav-link dropdown-btn"
+          style={{ rotate: "90deg" }}
+          onClick={() => setDropDownClicked((prev) => !prev)}
+        >
+          <Arrow rotate={dropdownClicked} stroke={10} width={30} />
+        </div>
         <Link to="/visualizations/top-selling" className="dropdown-item">
           top selling
         </Link>
@@ -102,7 +153,56 @@ const Navbar = () => {
           trends
         </Link>
       </div>
-    </>
+
+      {/* Sidebar for Burger Buttton */}
+      <div className={`nav-sidebar-cover ${openSideBar && "open-cover"}`}>
+        <div className={`nav-sidebar ${openSideBar && "open-sidebar"}`}>
+          <ul className="nav-list">
+            <li className="nav-item">
+              <div
+                className="nav-link dropdown-btn"
+                style={{ rotate: "90deg" }}
+                onClick={() => setOpenSideBar((prev) => !prev)}
+              >
+                <Arrow rotate={dropdownClicked} stroke={10} width={30} />
+              </div>
+            </li>
+            {/* Mission */}
+            <li
+              className={`nav-item ${
+                location.pathname === "/mission" && "active"
+              }`}
+            >
+              <Link to="/mission" className="nav-link">
+                Mission
+              </Link>
+            </li>
+
+            {/* Visualization (LIST) */}
+            <li
+              className={`nav-item ${
+                [
+                  "/visualizations/top-selling",
+                  "/visualizations/new-releases",
+                  "/visualizations/most-common",
+                  "/visualizations/trends",
+                ].includes(location.pathname) && "active"
+              }`}
+            >
+              <Link
+                className="nav-link dropdown-btn"
+                onClick={() => setDropDownClicked((prev) => !prev)}
+              >
+                Visualization
+                <div style={{ rotate: "-90deg", marginLeft: "20" }}>
+                  <Arrow rotate={dropdownClicked} stroke={10} width={30} />
+                </div>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 };
 
