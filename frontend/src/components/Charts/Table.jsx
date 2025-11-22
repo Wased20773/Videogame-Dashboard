@@ -22,11 +22,21 @@ function Table({ data, limit }) {
       <table className="table-container">
         <thead className="table-head">
           <tr>
-            <th>Thumbnail</th>
-            <th className="name">Name</th>
-            <th>Release Date</th>
-            <th>Price</th>
-            <th>Rating</th>
+            <th>
+              <p>Thumbnail</p>
+            </th>
+            <th className="name">
+              <p>Name</p>
+            </th>
+            <th>
+              <p>Release Date</p>
+            </th>
+            <th>
+              <p>Price</p>
+            </th>
+            <th>
+              <p>Rating</p>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -34,9 +44,10 @@ function Table({ data, limit }) {
             .slice(renderCountPosition - limit, renderCountPosition)
             .map((game) => (
               <tr key={game.id} className="table-row">
-                <td>
+                <td className="table-image-container">
                   <div className="table-img">
                     <img
+                      className="img"
                       src={game.img_small}
                       width={"auto"}
                       height={50}
@@ -44,24 +55,73 @@ function Table({ data, limit }) {
                     />
                   </div>
                 </td>
-                <td className="name">{game.name}</td>
-                <td>{game.release_date}</td>
-                <td>
-                  {game.price_final !== 0 ? `$${game.price_final}` : "Free"}
+                <td className="name">
+                  <p className="">{game.name}</p>
                 </td>
-                <td>
+                <td className="date">
+                  <p className="">{game.release_date}</p>
+                </td>
+                <td className="price">
+                  <p className="">
+                    {game.price_final !== 0 ? `$${game.price_final}` : "Free"}
+                  </p>
+                </td>
+                <td className="table-image-container">
                   <div className="table-img">
-                    <img
-                      src={DJCTQInfo[`${game.dejus_ratings.rating}`].img}
-                      height={50}
-                      alt={`age rating in DJCTQ for ${game.name}`}
-                    />
+                    {game.ratings && game.ratings.dejus ? (
+                      <img
+                        src={DJCTQInfo[`${game.ratings.dejus.rating}`].img}
+                        height={50}
+                        alt={`age rating in DJCTQ for ${game.name}`}
+                      />
+                    ) : (
+                      <p>N/A</p>
+                    )}
                   </div>
                 </td>
               </tr>
             ))}
         </tbody>
       </table>
+      <div className="table-card-container">
+        {data
+          .slice(renderCountPosition - limit, renderCountPosition)
+          .map((game) => (
+            <div className="table-card">
+              <div>
+                <div>
+                  <img className="img" src={game.img_small} />
+                </div>
+              </div>
+              <div className="table-card-details">
+                <div className="name">
+                  <p>{game.name}</p>
+                </div>
+                <div className="date">
+                  <p>{game.release_date}</p>
+                </div>
+                <div className="price">
+                  <p>
+                    {game.price_final !== 0 ? `$${game.price_final}` : "free"}
+                  </p>
+                </div>
+                <div>
+                  {game.ratings && game.ratings.dejus ? (
+                    <img
+                      className="rating"
+                      src={DJCTQInfo[`${game.ratings.dejus.rating}`].img}
+                      height={50}
+                      alt={`age rating in DJCTQ for ${game.name}`}
+                    />
+                  ) : (
+                    <p>N/A</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+
       <div className="table-buttons">
         <button
           className={`table-prev-button ${

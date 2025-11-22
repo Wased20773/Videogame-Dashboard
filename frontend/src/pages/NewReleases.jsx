@@ -34,7 +34,7 @@ const NewReleases = () => {
             img_small: game.small_capsule_image,
             img_header: game.header_image,
             price_final: game.final_price / 100,
-            dejus_ratings: appData.data[game.id].data.ratings.dejus,
+            ratings: appData.data[game.id].data.ratings,
             release_date: appData.data[game.id].data.release_date.date,
           };
         })
