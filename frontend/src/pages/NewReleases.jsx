@@ -17,7 +17,6 @@ const NewReleases = () => {
       const response = await axios.get("/api/steam/featuredcategories");
       const newReleases = response.data.new_releases.items;
       setNewReleases(newReleases);
-      console.log("New Releases: ", newReleases);
 
       // Information we want
       // id, name, large small header images, price_overview, release_date, ratings
@@ -39,7 +38,6 @@ const NewReleases = () => {
           };
         })
       );
-      console.log(data);
       setNewReleases(data);
       setLoading(false);
     } catch (e) {

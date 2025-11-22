@@ -35,7 +35,6 @@ const MostCommon = () => {
       const genres = await axios.post(`${baseURL}/genres`, `f id,name;l 500;`, {
         headers: { "x-api-key": x_api_key },
       });
-      console.log(genres.data);
       const genreMap = {};
       genres.data.forEach((g) => (genreMap[g.id] = g.name));
       setGenreTable(genreMap);
@@ -46,7 +45,6 @@ const MostCommon = () => {
         `f id,name; l 500;`,
         { headers: { "x-api-key": x_api_key } }
       );
-      console.log(language.data);
       const languageMap = {};
       language.data.forEach((l) => {
         languageMap[l.id] = l.name;
@@ -59,7 +57,6 @@ const MostCommon = () => {
         `f id,name; l 500;`,
         { headers: { "x-api-key": x_api_key } }
       );
-      console.log(platforms.data);
       const platformMap = {};
       platforms.data.forEach((p) => (platformMap[p.id] = p.name));
       setPlatformTable(platformMap);
@@ -70,7 +67,6 @@ const MostCommon = () => {
         `f id,name; l 50;`,
         { headers: { "x-api-key": x_api_key } }
       );
-      console.log(perspectives.data);
       const persMap = {};
       perspectives.data.forEach((p) => (persMap[p.id] = p.name));
       setPlayerPerspectiveTable(persMap);
@@ -106,7 +102,6 @@ const MostCommon = () => {
             "x-api-key": x_api_key,
           },
         });
-        console.log(response.data);
         allGames.push(...response.data);
 
         if (response.data.length < limit) {
@@ -152,7 +147,6 @@ const MostCommon = () => {
 
   useEffect(() => {
     if (games.length > 0) {
-      console.log(`Total Games Loaded: ${games.length}`);
       setGenreCounts(CountAllGenres());
     }
   }, [games]);

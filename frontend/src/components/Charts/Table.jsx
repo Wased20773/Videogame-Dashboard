@@ -5,10 +5,6 @@ import "../../styles/table.css";
 function Table({ data, limit }) {
   const [renderCountPosition, setRenderCountPosition] = useState(limit);
 
-  useEffect(() => {
-    console.log(renderCountPosition);
-  }, [renderCountPosition]);
-
   function ManageRenderCount(direction) {
     setRenderCountPosition((prev) => {
       if (direction === "Prev") {

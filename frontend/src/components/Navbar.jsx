@@ -7,17 +7,9 @@ import BurgerButton from "./SVG/BurgerButton.jsx";
 const Navbar = () => {
   const [dropdownClicked, setDropDownClicked] = useState(false);
   const [openSideBar, setOpenSideBar] = useState(false);
+
   // used to indicate what URL path we are in
   const location = useLocation();
-
-  useEffect(() => {
-    console.log(openSideBar);
-  }, [openSideBar]);
-
-  // Just for testing
-  useEffect(() => {
-    console.log(dropdownClicked);
-  }, [dropdownClicked]);
 
   useEffect(() => {
     setDropDownClicked(false);
