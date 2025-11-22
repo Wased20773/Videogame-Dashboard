@@ -113,6 +113,28 @@ td {
   transform: none;
 }
 
+.table-index-jump {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-index-jump-btn {
+  color: var(--Low-emphasis-light-text);
+  cursor: pointer;
+
+  width: 20px;
+  height: 20px;
+
+  transition: 0.3s;
+}
+
+.table-index-jump-current {
+  transition: 0.3s;
+  color: var(--High-emphasis-light-text);
+}
+
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1090px) {
   /* --- Table Container --- */
@@ -245,5 +267,12 @@ td {
 
   .img {
     width: 200px;
+  }
+
+  .table-buttons {
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+    gap: 10px;
   }
 }

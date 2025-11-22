@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DJCTQInfo } from "../../assets/data/DJCTQ_RatingInfo.js";
 import "../../styles/table.css";
 
 function Table({ data, limit }) {
   const [renderCountPosition, setRenderCountPosition] = useState(limit);
+
+  useEffect(() => {
+    console.log(renderCountPosition);
+  }, [renderCountPosition]);
 
   function ManageRenderCount(direction) {
     setRenderCountPosition((prev) => {
@@ -131,7 +135,21 @@ function Table({ data, limit }) {
         >
           Prev
         </button>
-
+        <div className="table-index-jump">
+          {data.slice(0, data.length / limit).map((_, index) => (
+            <button
+              className="table-index-jump-btn"
+              key={index}
+              onClick={() => setRenderCountPosition(limit * (index + 1))}
+            >
+              {renderCountPosition === limit * (index + 1) ? (
+                <p className="table-index-jump-current">{index + 1}</p>
+              ) : (
+                <p>{index + 1}</p>
+              )}
+            </button>
+          ))}
+        </div>
         <button
           className={`table-next-button ${
             renderCountPosition >= data.length && "deactivate-button"

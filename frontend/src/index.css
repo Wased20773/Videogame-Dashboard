@@ -95,6 +95,9 @@ body,
 
 button {
   padding: 0;
+  border: 0;
+  background: none;
+  font-size: var(--Desktop-p);
 }
 
 h1 {
@@ -145,6 +148,9 @@ p {
     margin: 0;
     font-size: var(--Tablet-p);
   }
+  button {
+    font-size: var(--Tablet-p);
+  }
 }
 
 /* Mobile */
@@ -161,6 +167,9 @@ p {
   }
   p {
     margin: 0;
+    font-size: var(--Mobile-p);
+  }
+  button {
     font-size: var(--Mobile-p);
   }
 }
