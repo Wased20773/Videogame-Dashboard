@@ -1,10 +1,19 @@
 import express from "express";
 import axios from "axios";
 import cors from "cors";
+import dotenv from "dotenv";
 
-const PORT = 5000;
+dotenv.config();
+
 const app = express();
 app.use(cors());
+app.use(express.text());
+
+const PORT = 5000;
+const BASE_URL = process.env.BASE_URL;
+const X_API_KEY = process.env.X_API_KEY;
+
+// --- STEAM WEB API --- //
 
 // Route: GetAppList -> results to all apps in Steam
 app.get("/api/steam/GetAppList", async (req, res) => {
@@ -14,8 +23,8 @@ app.get("/api/steam/GetAppList", async (req, res) => {
     );
     res.json(response.data);
   } catch (e) {
-    console.error(e);
-    res.status(500).json({ e: "Failed to fetch Steam's apps list" });
+    console.error("Error fetching Steam app list:", e.message);
+    res.status(500).json({ e: "Failed to fetch Steam app list" });
   }
 });
 
@@ -27,7 +36,7 @@ app.get("/api/steam/featuredcategories", async (req, res) => {
     );
     res.json(response.data);
   } catch (e) {
-    console.error(e);
+    console.error("Error fetching featured category from Steam:", e.message);
     res.status(500).json({ e: "Failed to fetch Steam's featured category" });
   }
 });
@@ -39,10 +48,101 @@ app.get("/api/steam/appdetails", async (req, res) => {
     const response = await axios.get(
       `https://store.steampowered.com/api/appdetails?appids=${appid}`
     );
+
     res.json(response.data);
   } catch (e) {
-    console.error(e);
-    res.json({ e: "Failed to get app details from Steam" });
+    console.error("Error fetching Steam app details:", e.message);
+    res.status(500).json({ e: "Failed to fetch app details from Steam" });
+  }
+});
+
+// --- IGDB API --- //
+// Route: genres -> List all genres in IGDB
+app.post("/api/igdb/genres", async (req, res) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/genres`, req.body, {
+      headers: {
+        "x-api-key": X_API_KEY,
+      },
+    });
+
+    res.json(response.data);
+  } catch (e) {
+    console.error("Error fetching genres list from IGDB:", e.message);
+    res.status(500).json({ e: "Failed to fetch genres list from IGDB" });
+  }
+});
+
+// Route: languages -> List all languages in IGDB
+app.post("/api/igdb/languages", async (req, res) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/languages`, req.body, {
+      headers: {
+        "x-api-key": X_API_KEY,
+      },
+    });
+
+    res.json(response.data);
+  } catch (e) {
+    console.error("Error fetching languages list from IGDB:", e.message);
+    res.status(500).json({ e: "Failed to fetch languages list from IGDB" });
+  }
+});
+
+// Route: platform -> List all platforms in IGDB
+app.post("/api/igdb/platforms", async (req, res) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/platforms`, req.body, {
+      headers: {
+        "x-api-key": X_API_KEY,
+      },
+    });
+
+    res.json(response.data);
+  } catch (e) {
+    console.error("Error fetching platforms list from IGDB:", e.message);
+    res.status(500).json({ e: "Failed to fetch platforms list from IGDB" });
+  }
+});
+
+// Route: player_perspectives -> List all player perspectives in IGDB
+app.post("/api/igdb/player_perspectives", async (req, res) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/player_perspectives`,
+      req.body,
+      {
+        headers: {
+          "x-api-key": X_API_KEY,
+        },
+      }
+    );
+
+    res.json(response.data);
+  } catch (e) {
+    console.error(
+      "Error fetching player perspectives list from IGDB:",
+      e.message
+    );
+    res
+      .status(500)
+      .json({ e: "Failed to fetch player perspectives list from IGDB" });
+  }
+});
+
+// Route: games -> List games from IGDB (list only 500 entries at a time)
+app.post("/api/igdb/games", async (req, res) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/games`, req.body, {
+      headers: {
+        "x-api-key": X_API_KEY,
+      },
+    });
+
+    res.json(response.data);
+  } catch (e) {
+    console.error("Error fetching games list from IGDB:", e.message);
+    res.status(500).json({ e: "Failed to fetch games list from IGDB" });
   }
 });
 

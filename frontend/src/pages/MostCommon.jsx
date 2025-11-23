@@ -6,10 +6,7 @@ import "../styles/PieChart.css";
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/
 
-const baseURL =
-  "https://gliwev5ic1.execute-api.us-west-2.amazonaws.com/production/v4";
-const x_api_key = "O73wy6g7xl7I6U3G1KJER40vqTusQwut2WXoRX8N";
-// language_supports, platforms, player_perspectives;
+// genres, language_supports, platforms, player_perspectives;
 const MostCommon = () => {
   // Collections
   const [games, setGames] = useState([]);
@@ -31,44 +28,50 @@ const MostCommon = () => {
   const fetchLookupTables = async () => {
     setLoading1(true);
     try {
+      const [genresRes, languagesRes, platformsRes, perspectivesRes] =
+        await Promise.all([
+          axios.post("/api/igdb/genres", `f id,name;l 500;`, {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }),
+          axios.post("/api/igdb/languages", `f id,name;l 500;`, {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }),
+          axios.post("/api/igdb/platforms", `f id,name;l 500;`, {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }),
+          axios.post("/api/igdb/player_perspectives", `f id,name;l 500;`, {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }),
+        ]);
+
       // Set Genres
-      const genres = await axios.post(`${baseURL}/genres`, `f id,name;l 500;`, {
-        headers: { "x-api-key": x_api_key },
-      });
       const genreMap = {};
-      genres.data.forEach((g) => (genreMap[g.id] = g.name));
+      genresRes.data.forEach((g) => (genreMap[g.id] = g.name));
       setGenreTable(genreMap);
 
       // Set Language
-      const language = await axios.post(
-        `${baseURL}/languages`,
-        `f id,name; l 500;`,
-        { headers: { "x-api-key": x_api_key } }
-      );
       const languageMap = {};
-      language.data.forEach((l) => {
+      languagesRes.data.forEach((l) => {
         languageMap[l.id] = l.name;
       });
       setLanguageTable(languageMap);
 
       // Set Platform
-      const platforms = await axios.post(
-        `${baseURL}/platforms`,
-        `f id,name; l 500;`,
-        { headers: { "x-api-key": x_api_key } }
-      );
       const platformMap = {};
-      platforms.data.forEach((p) => (platformMap[p.id] = p.name));
+      platformsRes.data.forEach((p) => (platformMap[p.id] = p.name));
       setPlatformTable(platformMap);
 
       // Set Player Perspective
-      const perspectives = await axios.post(
-        `${baseURL}/player_perspectives`,
-        `f id,name; l 50;`,
-        { headers: { "x-api-key": x_api_key } }
-      );
       const persMap = {};
-      perspectives.data.forEach((p) => (persMap[p.id] = p.name));
+      perspectivesRes.data.forEach((p) => (persMap[p.id] = p.name));
       setPlayerPerspectiveTable(persMap);
 
       setLoading1(false);
@@ -97,9 +100,9 @@ const MostCommon = () => {
         `;
 
       try {
-        const response = await axios.post(`${baseURL}/games`, query, {
+        const response = await axios.post("/api/igdb/games", query, {
           headers: {
-            "x-api-key": x_api_key,
+            "Content-Type": "text/plain",
           },
         });
         allGames.push(...response.data);
