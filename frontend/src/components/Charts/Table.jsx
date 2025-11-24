@@ -72,7 +72,7 @@ function Table({ data, limit }) {
                       <img
                         src={DJCTQInfo[`${game.ratings.dejus.rating}`].img}
                         height={50}
-                        alt={`age rating in DJCTQ for ${game.name}`}
+                        alt={`age rating: ${game.ratings.dejus.rating}`}
                       />
                     ) : (
                       <p>N/A</p>
@@ -87,7 +87,7 @@ function Table({ data, limit }) {
         {data
           .slice(renderCountPosition - limit, renderCountPosition)
           .map((game) => (
-            <div className="table-card">
+            <div key={game.id} className="table-card">
               <div>
                 <div>
                   <img className="img" src={game.img_small} />

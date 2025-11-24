@@ -73,6 +73,38 @@ app.post("/api/igdb/genres", async (req, res) => {
   }
 });
 
+// Route: themes -> List all themes in IGDB
+app.post("/api/igdb/themes", async (req, res) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/themes`, req.body, {
+      headers: {
+        "x-api-key": X_API_KEY,
+      },
+    });
+
+    res.json(response.data);
+  } catch (e) {
+    console.error("Error fetching themes list from IGDB:", e.message);
+    res.status(500).json({ e: "Failed to fetch themes list from IGDB" });
+  }
+});
+
+// Route: game_types -> List the types of games in IGDB
+app.post("/api/igdb/game_types", async (req, res) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/game_types`, req.body, {
+      headers: {
+        "x-api-key": X_API_KEY,
+      },
+    });
+
+    res.json(response.data);
+  } catch (e) {
+    console.error("Error fetching game_types list from IGDB:", e.message);
+    res.status(500).json({ e: "Failed to fetch game_types list from IGDB" });
+  }
+});
+
 // Route: languages -> List all languages in IGDB
 app.post("/api/igdb/languages", async (req, res) => {
   try {

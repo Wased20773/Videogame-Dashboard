@@ -11,14 +11,23 @@ const MostCommon = () => {
   // Collections
   const [games, setGames] = useState([]);
   const [genreCounts, setGenreCounts] = useState([]);
+  const [themeCounts, setThemeCounts] = useState([]);
+  const [gameTypeCounts, setGameTypeCounts] = useState([]);
+  const [languageCounts, setLanguageCounts] = useState([]);
+  const [platformCounts, setPlatformCounts] = useState([]);
+  const [playerPerspectiveCounts, setPlayerPerspectiveCounts] = useState([]);
+  const [mapCounts, setMapCounts] = useState([]);
 
   // Tables
   const [genreTable, setGenreTable] = useState([]);
+  const [themeTable, setThemeTable] = useState([]);
+  const [gameTypeTable, setGameTypeTable] = useState([]);
   const [languageTable, setLanguageTable] = useState([]);
   const [platformTable, setPlatformTable] = useState([]);
   const [playerPerspectivesTable, setPlayerPerspectiveTable] = useState([]);
 
   // Status
+  const [selectedOption, setSelectedOption] = useState("genres");
   const [loading1, setLoading1] = useState(true);
   const [loading2, setLoading2] = useState(true);
   const [error, setError] = useState(null);
@@ -28,34 +37,60 @@ const MostCommon = () => {
   const fetchLookupTables = async () => {
     setLoading1(true);
     try {
-      const [genresRes, languagesRes, platformsRes, perspectivesRes] =
-        await Promise.all([
-          axios.post("/api/igdb/genres", `f id,name;l 500;`, {
-            headers: {
-              "Content-Type": "text/plain",
-            },
-          }),
-          axios.post("/api/igdb/languages", `f id,name;l 500;`, {
-            headers: {
-              "Content-Type": "text/plain",
-            },
-          }),
-          axios.post("/api/igdb/platforms", `f id,name;l 500;`, {
-            headers: {
-              "Content-Type": "text/plain",
-            },
-          }),
-          axios.post("/api/igdb/player_perspectives", `f id,name;l 500;`, {
-            headers: {
-              "Content-Type": "text/plain",
-            },
-          }),
-        ]);
+      const [
+        genresRes,
+        themeRes,
+        gameTypesRes,
+        languagesRes,
+        platformsRes,
+        perspectivesRes,
+      ] = await Promise.all([
+        axios.post("/api/igdb/genres", `f id,name;l 500;`, {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }),
+        axios.post("/api/igdb/themes", `f id,name;l 500;`, {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }),
+        axios.post("/api/igdb/game_types", `f id,type;l 500;`, {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }),
+        axios.post("/api/igdb/languages", `f id,name;l 500;`, {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }),
+        axios.post("/api/igdb/platforms", `f id,name;l 500;`, {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }),
+        axios.post("/api/igdb/player_perspectives", `f id,name;l 500;`, {
+          headers: {
+            "Content-Type": "text/plain",
+          },
+        }),
+      ]);
 
       // Set Genres
       const genreMap = {};
       genresRes.data.forEach((g) => (genreMap[g.id] = g.name));
       setGenreTable(genreMap);
+
+      // Set Themes
+      const themeMap = {};
+      themeRes.data.forEach((g) => (themeMap[g.id] = g.name));
+      setThemeTable(themeMap);
+
+      // Set Game Types
+      const gameTypesMap = {};
+      gameTypesRes.data.forEach((g) => (gameTypesMap[g.id] = g.type));
+      setGameTypeTable(gameTypesMap);
 
       // Set Language
       const languageMap = {};
@@ -93,8 +128,8 @@ const MostCommon = () => {
     let flag = true;
     while (flag === true) {
       const query = `
-            f name, genres, language_supports.language, platforms, player_perspectives;
-            where first_release_date > 1735718400 & game_type = 0;
+            f name, genres, themes, game_type, language_supports.language, platforms, player_perspectives;
+            where first_release_date > 1735718400;
             l ${limit};
             o ${offset};
         `;
@@ -123,43 +158,118 @@ const MostCommon = () => {
     setLoading2(false);
   };
 
-  const CountAllGenres = function CountAllGenresFromTheLoadedGames() {
-    const genreCounts = {};
+  const CountAll = function CountAllFromTheLoadedGames(tag, table) {
+    const counts = {};
 
     games.forEach((game) => {
-      if (!game.genres) return;
+      // Case 1: tag is nested string
+      if (Array.isArray(tag)) {
+        const [outerKey, innerKey] = tag;
+        const outerArr = game[outerKey];
+        if (!outerArr) return;
 
-      game.genres.forEach((id) => {
-        const name = genreTable[id];
-        if (!name) return;
+        outerArr.forEach((obj) => {
+          const id = obj[innerKey];
+          if (!id) return;
 
-        // Entry doesn't exist? Create it... else increment it
-        if (!genreCounts[name]) genreCounts[name] = 1;
-        else genreCounts[name] += 1;
-      });
+          const name = table[id];
+          if (!name) return;
+
+          counts[name] = (counts[name] || 0) + 1;
+        });
+      }
+      // Case 2: tag is string
+      else {
+        if (!game[tag]) return;
+
+        if (Array.isArray(game[tag])) {
+          game[tag].forEach((id) => {
+            const name = table[id];
+            if (!name) return;
+
+            counts[name] = (counts[name] || 0) + 1;
+          });
+        } else {
+          const name = table[game[tag]];
+          if (!name) return;
+          counts[name] = (counts[name] || 0) + 1;
+        }
+      }
     });
 
     // Return a sorted array
-    return Object.entries(genreCounts).sort((a, b) => b[1] - a[1]);
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
   };
 
   useEffect(() => {
     fetchLookupTables();
     fetchAtMostGames();
+    setSelectedOption("genres");
   }, []);
 
   useEffect(() => {
-    if (games.length > 0) {
-      setGenreCounts(CountAllGenres());
-    }
-  }, [games]);
+    if (games.length === 0) return;
+
+    const genres = CountAll("genres", genreTable);
+    const themes = CountAll("themes", themeTable);
+    const gameTypes = CountAll("game_type", gameTypeTable);
+    const languages = CountAll(
+      ["language_supports", "language"],
+      languageTable
+    );
+    const platforms = CountAll("platforms", platformTable);
+    const playerPerspectives = CountAll(
+      "player_perspectives",
+      playerPerspectivesTable
+    );
+
+    setGenreCounts(genres);
+    setThemeCounts(themes);
+    setGameTypeCounts(gameTypes);
+    setLanguageCounts(languages);
+    setPlatformCounts(platforms);
+    setPlayerPerspectiveCounts(playerPerspectives);
+
+    setMapCounts({
+      genres,
+      themes,
+      game_types: gameTypes,
+      languages,
+      platforms,
+      player_perspectives: playerPerspectives,
+    });
+  }, [
+    games,
+    genreTable,
+    themeTable,
+    gameTypeTable,
+    languageTable,
+    platformTable,
+    playerPerspectivesTable,
+  ]);
+
+  useEffect(() => {});
 
   return (
     <div>
       <h1>MostCommon</h1>
       {!loading1 && !loading2 ? (
         <div className="piechart-container">
-          <PieChart genreCount={genreCounts} games={games} />
+          <PieChart genreCount={mapCounts[selectedOption]} games={games} />
+          <div>
+            <label htmlFor="options">Options</label>
+            <select
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            >
+              <option value="genres">Genres</option>
+              <option value="themes">Themes</option>
+              <option value="game_types">Game Types</option>
+              <option value="languages">Languages</option>
+              <option value="platforms">Platforms</option>
+              <option value="player_perspectives">Player Perspectives</option>
+            </select>
+          </div>
         </div>
       ) : (
         "loading..."
