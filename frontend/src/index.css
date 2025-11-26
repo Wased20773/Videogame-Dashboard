@@ -68,7 +68,7 @@
   --nav-height: 50px;
 
   /* For charts/table */
-  --Table-border-color: rgb(132, 132, 132);
+  --Border-color: rgb(132, 132, 132);
   --Table-border: 2px solid var(--Table-border-color);
   --Table-bg-row-light: rgb(87, 87, 87);
   --Table-bg-row-dark: rgb(59, 59, 59);

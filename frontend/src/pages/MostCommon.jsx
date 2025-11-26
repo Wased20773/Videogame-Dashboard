@@ -2,20 +2,15 @@ import { useEffect, useState } from "react";
 import PieChart from "../components/Charts/PieChart.jsx";
 import axios from "axios";
 import "../styles/PieChart.css";
+import ColumnChart from "../components/Charts/ColumnChart.jsx";
 
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/
 
-// genres, language_supports, platforms, player_perspectives;
+// genres, themes, game_type, language_supports, platforms, player_perspectives;
 const MostCommon = () => {
   // Collections
   const [games, setGames] = useState([]);
-  const [genreCounts, setGenreCounts] = useState([]);
-  const [themeCounts, setThemeCounts] = useState([]);
-  const [gameTypeCounts, setGameTypeCounts] = useState([]);
-  const [languageCounts, setLanguageCounts] = useState([]);
-  const [platformCounts, setPlatformCounts] = useState([]);
-  const [playerPerspectiveCounts, setPlayerPerspectiveCounts] = useState([]);
   const [mapCounts, setMapCounts] = useState([]);
 
   // Tables
@@ -27,7 +22,8 @@ const MostCommon = () => {
   const [playerPerspectivesTable, setPlayerPerspectiveTable] = useState([]);
 
   // Status
-  const [selectedOption, setSelectedOption] = useState("genres");
+  const [selectedTag, setSelectedTag] = useState("genres");
+  const [displayOption, setDisplayOption] = useState("no");
   const [loading1, setLoading1] = useState(true);
   const [loading2, setLoading2] = useState(true);
   const [error, setError] = useState(null);
@@ -164,28 +160,27 @@ const MostCommon = () => {
     games.forEach((game) => {
       // Case 1: tag is nested string
       if (Array.isArray(tag)) {
-        const [outerKey, innerKey] = tag;
-        const outerArr = game[outerKey];
-        if (!outerArr) return;
+        const [firstPath, secondPath] = tag;
+        if (game[firstPath] === null || game[firstPath] === undefined) return;
 
-        outerArr.forEach((obj) => {
-          const id = obj[innerKey];
-          if (!id) return;
+        game[firstPath].forEach((obj) => {
+          const id = obj[secondPath];
+          if (id === null || id === undefined) return;
 
           const name = table[id];
-          if (!name) return;
+          if (name === null || name === undefined) return;
 
           counts[name] = (counts[name] || 0) + 1;
         });
       }
       // Case 2: tag is string
       else {
-        if (!game[tag]) return;
+        if (game[tag] === null || game[tag] === undefined) return;
 
         if (Array.isArray(game[tag])) {
           game[tag].forEach((id) => {
             const name = table[id];
-            if (!name) return;
+            if (name === null || name === undefined) return;
 
             counts[name] = (counts[name] || 0) + 1;
           });
@@ -204,7 +199,8 @@ const MostCommon = () => {
   useEffect(() => {
     fetchLookupTables();
     fetchAtMostGames();
-    setSelectedOption("genres");
+    setSelectedTag("genres");
+    setDisplayOption("no");
   }, []);
 
   useEffect(() => {
@@ -223,13 +219,6 @@ const MostCommon = () => {
       playerPerspectivesTable
     );
 
-    setGenreCounts(genres);
-    setThemeCounts(themes);
-    setGameTypeCounts(gameTypes);
-    setLanguageCounts(languages);
-    setPlatformCounts(platforms);
-    setPlayerPerspectiveCounts(playerPerspectives);
-
     setMapCounts({
       genres,
       themes,
@@ -238,15 +227,7 @@ const MostCommon = () => {
       platforms,
       player_perspectives: playerPerspectives,
     });
-  }, [
-    games,
-    genreTable,
-    themeTable,
-    gameTypeTable,
-    languageTable,
-    platformTable,
-    playerPerspectivesTable,
-  ]);
+  }, [games]);
 
   useEffect(() => {});
 
@@ -254,21 +235,38 @@ const MostCommon = () => {
     <div>
       <h1>MostCommon</h1>
       {!loading1 && !loading2 ? (
-        <div className="piechart-container">
-          <PieChart genreCount={mapCounts[selectedOption]} games={games} />
-          <div>
-            <label htmlFor="options">Options</label>
-            <select
-              value={selectedOption}
-              onChange={(e) => setSelectedOption(e.target.value)}
-            >
-              <option value="genres">Genres</option>
-              <option value="themes">Themes</option>
-              <option value="game_types">Game Types</option>
-              <option value="languages">Languages</option>
-              <option value="platforms">Platforms</option>
-              <option value="player_perspectives">Player Perspectives</option>
-            </select>
+        <div className="chart-container">
+          {/* <PieChart tagCount={mapCounts[selectedOption]} /> */}
+          <ColumnChart
+            tagCount={mapCounts[selectedTag]}
+            displayOption={displayOption}
+          />
+          <div className="chart-options">
+            <div className="options">
+              <label htmlFor="tags">Tags</label>
+              <select
+                value={selectedTag}
+                onChange={(e) => setSelectedTag(e.target.value)}
+              >
+                <option value="genres">Genres</option>
+                <option value="themes">Themes</option>
+                <option value="game_types">Game Types</option>
+                <option value="languages">Languages</option>
+                <option value="platforms">Platforms</option>
+                <option value="player_perspectives">Player Perspectives</option>
+              </select>
+            </div>
+
+            <div className="options">
+              <label htmlFor="options">Display All Data</label>
+              <select
+                value={displayOption}
+                onChange={(e) => setDisplayOption(e.target.value)}
+              >
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
           </div>
         </div>
       ) : (
