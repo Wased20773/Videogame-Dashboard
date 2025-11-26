@@ -1,0 +1,175 @@
+/* Desktop size: 1090px >= */
+/* Tablet size: 768px - 1089px */
+/* Large Mobile View size: 481px - 767px */
+/* Mobile View size: 480 <= */
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* For consistent styling */
+  color: var(--High-emphasis-light-text); /* by default */
+  background-color: var(--Background-HTML);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* --- Font Sizes --- */
+  /* paragraphs */
+  --Desktop-p: 16px;
+  --Tablet-p: 15px;
+  --Mobile-p: 14px;
+
+  /* headers */
+  --Desktop-h1: 32px;
+  --Desktop-h2: 24px;
+  --Desktop-h3: 18px;
+
+  --Tablet-h1: 30px;
+  --Tablet-h2: 22px;
+  --Tablet-h3: 16px;
+
+  --Mobile-h1: 28px;
+  --Mobile-h2: 20px;
+  --Mobile-h3: 16px;
+
+  /* --- Color Palette --- */
+  /* Text */
+  --High-emphasis-light-text: rgb(220, 220, 220);
+  --Medium-emphasis-light-text: rgb(176, 176, 176);
+  --Low-emphasis-light-text: rgb(132, 132, 132);
+
+  --High-emphasis-dark-text: rgb(30, 30, 30);
+  --Medium-emphasis-dark-text: rgb(50, 50, 50);
+  --Low-emphasis-dark-text: rgb(70, 70, 70);
+
+  /* Background */
+  --Background-HTML: rgb(27, 27, 27);
+
+  /* Buttons */
+  --Btn-primary: rgb(56, 139, 248);
+  --Btn-secondary: rgb(202, 202, 202);
+
+  /* Hover effects */
+  --Background-HTML-hover: rgb(60, 60, 60);
+  --Background-HTML-hover-border: rgb(220, 220, 220);
+
+  /* --- Special Colors --- */
+  /* Steam */
+  --Theme-Steam-dark: rgb(23, 26, 33);
+  --Theme-Steam-light: rgb(42, 71, 94);
+
+  /* IGDB */
+  --Theme-IGDB-dark: rgb(56, 22, 107);
+  --Theme-IGDB-light: rgb(139, 77, 229);
+
+  /* --- Measurement Variables --- */
+  --nav-height: 50px;
+
+  /* For charts/table */
+  --Border-color: rgb(132, 132, 132);
+  --Table-border: 2px solid var(--Table-border-color);
+  --Table-bg-row-light: rgb(87, 87, 87);
+  --Table-bg-row-dark: rgb(59, 59, 59);
+  --Table-header-bg: rgb(20, 20, 20);
+  --Table-row-hover: rgb(196, 196, 196);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-contents {
+  flex: 1;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: var(--Desktop-p);
+}
+
+h1 {
+  text-align: center;
+  font-size: var(--Desktop-h1);
+}
+h2 {
+  font-size: var(--Desktop-h2);
+}
+h3 {
+  font-size: var(--Desktop-h3);
+}
+p {
+  margin: 0;
+  font-size: var(--Desktop-p);
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1090px) {
+  h1 {
+    text-align: center;
+    font-size: var(--Tablet-h1);
+  }
+  h2 {
+    font-size: var(--Tablet-h2);
+  }
+  h3 {
+    font-size: var(--Tablet-h3);
+  }
+  p {
+    margin: 0;
+    font-size: var(--Tablet-p);
+  }
+}
+/* Large Mobile */
+@media (min-width: 481px) and (max-width: 767px) {
+  h1 {
+    text-align: center;
+    font-size: var(--Tablet-h1);
+  }
+  h2 {
+    font-size: var(--Tablet-h2);
+  }
+  h3 {
+    font-size: var(--Tablet-h3);
+  }
+  p {
+    margin: 0;
+    font-size: var(--Tablet-p);
+  }
+  button {
+    font-size: var(--Tablet-p);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  h1 {
+    text-align: center;
+    font-size: var(--Mobile-h1);
+  }
+  h2 {
+    font-size: var(--Mobile-h2);
+  }
+  h3 {
+    font-size: var(--Mobile-h3);
+  }
+  p {
+    margin: 0;
+    font-size: var(--Mobile-p);
+  }
+  button {
+    font-size: var(--Mobile-p);
+  }
+}

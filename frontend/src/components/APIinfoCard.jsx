@@ -1,5 +1,3 @@
-import SteamPNG from "../assets/steam.png";
-import IGDBPNG from "../assets/igdb.png";
 import "../styles/home.css";
 
 const APIinfoCard = ({ api, theme, width_img }) => {
@@ -15,13 +13,13 @@ const APIinfoCard = ({ api, theme, width_img }) => {
           />
           <h3 className="cards-api-h3">{api.name}</h3>
         </div>
-        <div>{api.info}</div>
+        <p>{api.info}</p>
       </div>
       <a
         href={api.documentation[0].url}
         className="cards-api-documentation-link"
       >
-        Official Documentation
+        <p>Official Documentation</p>
       </a>
     </div>
   );

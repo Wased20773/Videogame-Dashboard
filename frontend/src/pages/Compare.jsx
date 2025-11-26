@@ -1,5 +1,3 @@
-import React from "react";
-
 const Compare = () => {
   return <h1>Compare</h1>;
 };
