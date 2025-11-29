@@ -3,8 +3,6 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home.jsx";
 import Mission from "./pages/Mission.jsx";
 import ColumnChart from "./components/Charts/ColumnChart.jsx";
-// import Table from "./components/Charts/Table.jsx";
-import PieChart from "./components/Charts/PieChart.jsx";
 import Histogram from "./components/Charts/Histogram.jsx";
 
 import Compare from "./pages/Compare.jsx";

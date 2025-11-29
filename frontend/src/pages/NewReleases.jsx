@@ -29,9 +29,8 @@ const NewReleases = () => {
           return {
             id: game.id,
             name: game.name,
-            img_large: game.large_capsule_image,
             img_small: game.small_capsule_image,
-            img_header: game.header_image,
+            img_large: game.large_capsule_image,
             price_final: game.final_price / 100,
             ratings: appData.data[game.id].data.ratings,
             release_date: appData.data[game.id].data.release_date.date,

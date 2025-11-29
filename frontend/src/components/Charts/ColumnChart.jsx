@@ -16,7 +16,7 @@ const ColumnChart = ({ tagCount, displayOption }) => {
     return <div>No data...</div>;
   }
 
-  // Begin Splitting genreCount for each genre in the array
+  // Begin Splitting tagCount for each genre in the array
   // tagCount = Array [ "Identifier", count_value ]
   // console.log(tagCount);
 

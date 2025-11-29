@@ -6,7 +6,7 @@ const Home = () => {
     <div>
       <div className="hero-container">
         <h1 className="hero-title">Games Dashboard</h1>
-        <h2 className="hero-text">Over 500,000 games from API's</h2>
+        <h2 className="hero-text">Over 200,000 games from API's</h2>
       </div>
 
       <h3 style={{ textAlign: "center" }}>API's that are in place</h3>

@@ -265,6 +265,7 @@ td {
 
   .img {
     width: 75vw;
+    height: auto;
   }
 
   .table-buttons {

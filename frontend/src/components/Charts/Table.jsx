@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DJCTQInfo } from "../../assets/data/DJCTQ_RatingInfo.js";
 import "../../styles/table.css";
 
@@ -90,7 +90,12 @@ function Table({ data, limit }) {
             <div key={game.id} className="table-card">
               <div>
                 <div>
-                  <img className="img" src={game.img_small} />
+                  <img
+                    className="img"
+                    src={game.img_large}
+                    height={100}
+                    alt={`thumbnail for ${game.name}`}
+                  />
                 </div>
               </div>
               <div className="table-card-details">

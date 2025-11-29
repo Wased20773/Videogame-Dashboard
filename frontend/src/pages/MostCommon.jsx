@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import PieChart from "../components/Charts/PieChart.jsx";
 import axios from "axios";
-import "../styles/PieChart.css";
 import ColumnChart from "../components/Charts/ColumnChart.jsx";
-
+import FilterPanel from "../components/Charts/FilterPanel.jsx";
+import "../styles/chart.css";
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/
 
-// genres, themes, game_type, language_supports, platforms, player_perspectives;
+// genres, themes, game_types, language_supports, platforms, player_perspectives;
 const MostCommon = () => {
   // Collections
   const [games, setGames] = useState([]);
@@ -236,38 +235,16 @@ const MostCommon = () => {
       <h1>MostCommon</h1>
       {!loading1 && !loading2 ? (
         <div className="chart-container">
-          {/* <PieChart tagCount={mapCounts[selectedOption]} /> */}
           <ColumnChart
             tagCount={mapCounts[selectedTag]}
             displayOption={displayOption}
           />
-          <div className="chart-options">
-            <div className="options">
-              <label htmlFor="tags">Tags</label>
-              <select
-                value={selectedTag}
-                onChange={(e) => setSelectedTag(e.target.value)}
-              >
-                <option value="genres">Genres</option>
-                <option value="themes">Themes</option>
-                <option value="game_types">Game Types</option>
-                <option value="languages">Languages</option>
-                <option value="platforms">Platforms</option>
-                <option value="player_perspectives">Player Perspectives</option>
-              </select>
-            </div>
-
-            <div className="options">
-              <label htmlFor="options">Display All Data</label>
-              <select
-                value={displayOption}
-                onChange={(e) => setDisplayOption(e.target.value)}
-              >
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-              </select>
-            </div>
-          </div>
+          <FilterPanel
+            selectedTag={selectedTag}
+            setSelectedTag={setSelectedTag}
+            displayOption={displayOption}
+            setDisplayOption={setDisplayOption}
+          />
         </div>
       ) : (
         "loading..."
