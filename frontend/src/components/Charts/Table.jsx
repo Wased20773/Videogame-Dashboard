@@ -40,91 +40,93 @@ function Table({ data, limit }) {
           </tr>
         </thead>
         <tbody>
-          {data
-            .slice(renderCountPosition - limit, renderCountPosition)
-            .map((game) => (
-              <tr key={game.id} className="table-row">
-                <td className="table-image-container">
-                  <div className="table-img">
+          {data.slice(renderCountPosition - limit, renderCountPosition).map(
+            (game) =>
+              game && (
+                <tr key={game.id} className="table-row">
+                  <td className="table-image-container">
+                    <div className="table-img">
+                      <img
+                        className="img"
+                        src={game.img_small}
+                        width={"auto"}
+                        height={50}
+                        alt={`thumbnail for ${game.name}`}
+                      />
+                    </div>
+                  </td>
+                  <td className="name">
+                    <p className="">{game.name}</p>
+                  </td>
+                  <td className="date">
+                    <p className="">{game.release_date}</p>
+                  </td>
+                  <td className="price">
+                    <p className="">
+                      {game.price_final !== 0 ? `$${game.price_final}` : "Free"}
+                    </p>
+                  </td>
+                  <td className="table-image-container">
+                    <div className="table-img">
+                      {game.ratings && game.ratings.dejus ? (
+                        <img
+                          src={DJCTQInfo[`${game.ratings.dejus.rating}`].img}
+                          height={50}
+                          alt={`age rating: ${game.ratings.dejus.rating}`}
+                        />
+                      ) : (
+                        <p>N/A</p>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              )
+          )}
+        </tbody>
+      </table>
+      <div className="table-card-container">
+        {data.slice(renderCountPosition - limit, renderCountPosition).map(
+          (game) =>
+            game && (
+              <div key={game.id} className="table-card">
+                <div>
+                  <div>
                     <img
                       className="img"
-                      src={game.img_small}
-                      width={"auto"}
-                      height={50}
+                      src={game.img_large}
+                      height={100}
                       alt={`thumbnail for ${game.name}`}
                     />
                   </div>
-                </td>
-                <td className="name">
-                  <p className="">{game.name}</p>
-                </td>
-                <td className="date">
-                  <p className="">{game.release_date}</p>
-                </td>
-                <td className="price">
-                  <p className="">
-                    {game.price_final !== 0 ? `$${game.price_final}` : "Free"}
-                  </p>
-                </td>
-                <td className="table-image-container">
-                  <div className="table-img">
+                </div>
+                <div className="table-card-details">
+                  <div className="name">
+                    <p>{game.name}</p>
+                  </div>
+                  <div className="date">
+                    <p>{game.release_date}</p>
+                  </div>
+                  <div className="price">
+                    <p>
+                      {game.price_final !== 0 ? `$${game.price_final}` : "free"}
+                    </p>
+                  </div>
+                  <div>
                     {game.ratings && game.ratings.dejus ? (
                       <img
+                        className="rating"
                         src={DJCTQInfo[`${game.ratings.dejus.rating}`].img}
                         height={50}
-                        alt={`age rating: ${game.ratings.dejus.rating}`}
+                        alt={`age rating in DJCTQ for ${game.name}`}
                       />
                     ) : (
                       <p>N/A</p>
                     )}
                   </div>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-      <div className="table-card-container">
-        {data
-          .slice(renderCountPosition - limit, renderCountPosition)
-          .map((game) => (
-            <div key={game.id} className="table-card">
-              <div>
-                <div>
-                  <img
-                    className="img"
-                    src={game.img_large}
-                    height={100}
-                    alt={`thumbnail for ${game.name}`}
-                  />
                 </div>
               </div>
-              <div className="table-card-details">
-                <div className="name">
-                  <p>{game.name}</p>
-                </div>
-                <div className="date">
-                  <p>{game.release_date}</p>
-                </div>
-                <div className="price">
-                  <p>
-                    {game.price_final !== 0 ? `$${game.price_final}` : "free"}
-                  </p>
-                </div>
-                <div>
-                  {game.ratings && game.ratings.dejus ? (
-                    <img
-                      className="rating"
-                      src={DJCTQInfo[`${game.ratings.dejus.rating}`].img}
-                      height={50}
-                      alt={`age rating in DJCTQ for ${game.name}`}
-                    />
-                  ) : (
-                    <p>N/A</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
+            )
+        )}
       </div>
 
       <div className="table-buttons">

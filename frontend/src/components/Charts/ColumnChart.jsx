@@ -47,7 +47,6 @@ const ColumnChart = ({ tagCount, displayOption }) => {
     labels: [...labels],
     datasets: [
       {
-        label: "Count",
         data: [...counts],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
@@ -72,7 +71,6 @@ const ColumnChart = ({ tagCount, displayOption }) => {
     labels: [...labels, ...labels_others],
     datasets: [
       {
-        label: "Count",
         data: [...counts, ...counts_others],
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
@@ -96,7 +94,7 @@ const ColumnChart = ({ tagCount, displayOption }) => {
     maintainAspectRatio: false,
     responsive: true,
     plugins: {
-      legend: { display: true },
+      legend: { display: false },
     },
 
     scales: {
@@ -115,7 +113,7 @@ const ColumnChart = ({ tagCount, displayOption }) => {
   };
 
   return (
-    <div className="columnchart-container">
+    <div className="chart">
       <div>Total Collected: {total_sum}</div>
       {displayOption === "no" ? (
         <Bar data={data_short} options={options} />

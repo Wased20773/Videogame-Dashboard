@@ -178,6 +178,26 @@ app.post("/api/igdb/games", async (req, res) => {
   }
 });
 
+// Route: release_dates -> List the release dates from IGDB (list only 500 entries at a time)
+app.post("/api/igdb/release_dates/count", async (req, res) => {
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/release_dates/count`,
+      req.body,
+      {
+        headers: {
+          "x-api-key": X_API_KEY,
+        },
+      }
+    );
+
+    res.json(response.data);
+  } catch (e) {
+    console.error("Error fetching release dates list from IGDB:", e.message);
+    res.status(500).json({ e: "Failed to fetch release dates list from IGDB" });
+  }
+});
+
 app.listen(PORT, () =>
   console.log(`Backend proxy running on http://localhost:${PORT}`)
 );

@@ -2,13 +2,12 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home.jsx";
 import Mission from "./pages/Mission.jsx";
-import ColumnChart from "./components/Charts/ColumnChart.jsx";
-import Histogram from "./components/Charts/Histogram.jsx";
-
 import Compare from "./pages/Compare.jsx";
 import Footer from "./components/Footer.jsx";
+import TopSelling from "./pages/TopSelling.jsx";
 import NewReleases from "./pages/NewReleases.jsx";
 import MostCommon from "./pages/MostCommon.jsx";
+import Trends from "./pages/Trends.jsx";
 
 function App() {
   return (
@@ -23,7 +22,7 @@ function App() {
           {/* Visualizations */}
           <Route
             path="/visualizations/top-selling"
-            Component={ColumnChart}
+            Component={TopSelling}
           ></Route>
           <Route
             path="/visualizations/new-releases"
@@ -33,7 +32,7 @@ function App() {
             path="/visualizations/most-common"
             Component={MostCommon}
           ></Route>
-          <Route path="/visualizations/trends" Component={Histogram}></Route>
+          <Route path="/visualizations/trends" Component={Trends}></Route>
 
           <Route path="/compare" Component={Compare}></Route>
 

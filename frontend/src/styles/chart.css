@@ -7,8 +7,13 @@
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
   width: fit-content;
+  height: 400px;
   padding: 20px;
   margin: 0 auto;
+}
+
+.chart {
+  width: 1000px;
 }
 
 .chart-options {

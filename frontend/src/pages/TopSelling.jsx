@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-import Table from "../components/Charts/Table.jsx";
+import { useEffect, useState } from "react";
+import Table from "../components/Charts/Table";
 
 const limit = 10;
 
-const NewReleases = () => {
-  const [newReleases, setNewReleases] = useState([]);
+const TopSelling = () => {
+  const [topSellers, setTopSellers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,15 +13,19 @@ const NewReleases = () => {
     setLoading(true);
     try {
       const response = await axios.get("/api/steam/featuredcategories");
-      const newReleases = response.data.new_releases.items;
+      const topSellers = response.data.top_sellers.items;
 
       // Information we want
       // id, name, large and small images, final_price, release_date, ratings
       const data = await Promise.all(
-        newReleases.map(async (game) => {
+        topSellers.map(async (game) => {
           const appData = await axios.get(
             `/api/steam/appdetails?appids=${game.id}`
           );
+
+          // If Steam returned an invalid response OR it's hardware → skip
+          const detail = appData.data?.[game.id]?.data;
+          if (!detail || detail.type === "hardware") return null;
 
           return {
             id: game.id,
@@ -35,33 +39,32 @@ const NewReleases = () => {
         })
       );
 
-      setNewReleases(data);
+      setTopSellers(data);
       setLoading(false);
     } catch (e) {
-      console.error("Error fetching featured games on Steam: ", e);
+      console.error("Error in fetching featured games on Steam");
       setError(
         `Error ${e.status}: fetching featured games on Steam, this may be due to constant refreshses to our API's. Please wait a few minutes to regain access. If you think this is a mistake on our end, please contact us below.`
       );
     }
   };
 
-  // Load all featured categories
   useEffect(() => {
     fetchFeaturedCategories();
   }, []);
 
   return (
     <div>
-      <h1>New Releases</h1>
+      <h1>Top Selling</h1>
 
       {/* display table here */}
       <div>
         {loading && !error && <p>loading entries...</p>}
         {error && `${error}`}
-        {!loading && !error && <Table data={newReleases} limit={limit} />}
+        {!loading && !error && <Table data={topSellers} limit={limit} />}
       </div>
     </div>
   );
 };
 
-export default NewReleases;
+export default TopSelling;

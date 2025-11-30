@@ -121,10 +121,11 @@ const MostCommon = () => {
     let offset = 0;
     const limit = 500;
     let flag = true;
+    const date = 1735718400;
     while (flag === true) {
       const query = `
             f name, genres, themes, game_type, language_supports.language, platforms, player_perspectives;
-            where first_release_date > 1735718400;
+            where first_release_date > ${date};
             l ${limit};
             o ${offset};
         `;
@@ -143,8 +144,10 @@ const MostCommon = () => {
         }
         offset += limit;
       } catch (e) {
-        console.error("Error fetching games from IGDB API: ", e);
-        setError(`Error ${e}: fetching games from IGDB API`);
+        console.error("Error fetching games from IGDB's API: ", e);
+        setError(
+          `Error ${e}: Something wrong happen when fetching games from IGDB's API`
+        );
         setLoading2(false);
         flag = false;
       }
