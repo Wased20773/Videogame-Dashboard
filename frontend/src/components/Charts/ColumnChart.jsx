@@ -7,11 +7,11 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import "../../styles/columnchart.css";
+import "../../styles/chart.css";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const ColumnChart = ({ tagCount, displayOption }) => {
+const ColumnChart = ({ tagCount, displayOption, selectedTag }) => {
   if (!tagCount || tagCount.length === 0) {
     return <div>No data...</div>;
   }
@@ -114,6 +114,15 @@ const ColumnChart = ({ tagCount, displayOption }) => {
 
   return (
     <div className="chart">
+      <h2
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "0",
+        }}
+      >
+        Most Common {selectedTag}
+      </h2>
       <div>Total Collected: {total_sum}</div>
       {displayOption === "no" ? (
         <Bar data={data_short} options={options} />

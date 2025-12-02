@@ -61,17 +61,6 @@ const Navbar = () => {
               />
             </Link>
           </li>
-
-          {/* Compare */}
-          <li
-            className={`nav-item ${
-              location.pathname === "/compare" && "active"
-            }`}
-          >
-            <Link to="/compare" className="nav-link nav-compare">
-              Compare
-            </Link>
-          </li>
         </ul>
       </nav>
 
@@ -94,35 +83,9 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-
-          {/* Compare */}
-          <li
-            className={`nav-item ${
-              location.pathname === "/compare" && "active"
-            }`}
-          >
-            <Link to="/compare" className="nav-link nav-compare">
-              Compare
-            </Link>
-          </li>
         </ul>
       </nav>
 
-      {/* Drop Down Options
-          - Column Chart (top-selling)
-            - genres
-            - average playtime
-            - average time-to-beat
-            - discount effects to show before and after for games on special offers
-          - Tables
-            - new releases
-          - Pie Charts (max 10 divisions)
-            - most common genres
-            - platform availability
-            - language availability
-          - Histogram (2010 - 2015)
-            - release year trends
-        */}
       {/* Drop Down Options List */}
       <div className={`dropdown-container ${dropdownClicked && "open"}`}>
         <div

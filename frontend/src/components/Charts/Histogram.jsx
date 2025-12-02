@@ -67,6 +67,9 @@ const Histogram = ({ dates }) => {
 
   return (
     <div className="chart">
+      <h2 style={{ display: "flex", justifyContent: "center", marginTop: "0" }}>
+        Release Year Trend In The Past 10 Years
+      </h2>
       <p>Total Collected: {totalCount}</p>
       <Line data={data} options={options} />
     </div>

@@ -81,7 +81,7 @@
   position: absolute;
   z-index: 1;
   top: -110px;
-  right: 113px;
+  right: 0;
   width: 150px;
   background-color: var(--Background-HTML);
   box-shadow: 0 black;
@@ -121,17 +121,6 @@
   transition: 0.3s;
   background-color: var(--Background-HTML-hover);
   border: 1px solid var(--Background-HTML-hover-border);
-}
-
-.nav-compare {
-  color: var(--High-emphasis-dark-text);
-  background-color: var(--Btn-secondary);
-
-  border-radius: 10px;
-
-  height: 30px;
-  padding: 0 20px;
-  /* margin-right: 15px; */
 }
 
 .rotate-180 {

@@ -12,12 +12,12 @@ const FilterPanel = ({
           value={selectedTag}
           onChange={(e) => setSelectedTag(e.target.value)}
         >
-          <option value="genres">Genres</option>
-          <option value="themes">Themes</option>
-          <option value="game_types">Game Types</option>
-          <option value="languages">Languages</option>
-          <option value="platforms">Platforms</option>
-          <option value="player_perspectives">Player Perspectives</option>
+          <option value="Genres">Genres</option>
+          <option value="Themes">Themes</option>
+          <option value="Game Types">Game Types</option>
+          <option value="Languages">Languages</option>
+          <option value="Platforms">Platforms</option>
+          <option value="Player Perspectives">Player Perspectives</option>
         </select>
       </div>
 

@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home.jsx";
 import Mission from "./pages/Mission.jsx";
-import Compare from "./pages/Compare.jsx";
 import Footer from "./components/Footer.jsx";
 import TopSelling from "./pages/TopSelling.jsx";
 import NewReleases from "./pages/NewReleases.jsx";
@@ -33,11 +32,6 @@ function App() {
             Component={MostCommon}
           ></Route>
           <Route path="/visualizations/trends" Component={Trends}></Route>
-
-          <Route path="/compare" Component={Compare}></Route>
-
-          {/* Not sure about this one */}
-          <Route path="/legal"></Route>
 
           {/* Page not found */}
           <Route path="*"></Route>

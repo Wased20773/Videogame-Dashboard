@@ -21,7 +21,7 @@ const MostCommon = () => {
   const [playerPerspectivesTable, setPlayerPerspectiveTable] = useState([]);
 
   // Status
-  const [selectedTag, setSelectedTag] = useState("genres");
+  const [selectedTag, setSelectedTag] = useState("Genres");
   const [displayOption, setDisplayOption] = useState("no");
   const [loading1, setLoading1] = useState(true);
   const [loading2, setLoading2] = useState(true);
@@ -201,7 +201,7 @@ const MostCommon = () => {
   useEffect(() => {
     fetchLookupTables();
     fetchAtMostGames();
-    setSelectedTag("genres");
+    setSelectedTag("Genres");
     setDisplayOption("no");
   }, []);
 
@@ -222,12 +222,12 @@ const MostCommon = () => {
     );
 
     setMapCounts({
-      genres,
-      themes,
-      game_types: gameTypes,
-      languages,
-      platforms,
-      player_perspectives: playerPerspectives,
+      Genres: genres,
+      Themes: themes,
+      "Game Types": gameTypes,
+      Languages: languages,
+      Platforms: platforms,
+      "Player Perspectives": playerPerspectives,
     });
   }, [games]);
 
@@ -241,6 +241,7 @@ const MostCommon = () => {
           <ColumnChart
             tagCount={mapCounts[selectedTag]}
             displayOption={displayOption}
+            selectedTag={selectedTag}
           />
           <FilterPanel
             selectedTag={selectedTag}
