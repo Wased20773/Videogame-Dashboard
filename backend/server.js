@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.text());
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const BASE_URL = process.env.BASE_URL;
 const X_API_KEY = process.env.X_API_KEY;
 
@@ -198,6 +198,4 @@ app.post("/api/igdb/release_dates/count", async (req, res) => {
   }
 });
 
-app.listen(PORT, () =>
-  console.log(`Backend proxy running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => console.log(`Backend proxy running on port ${PORT}`));
