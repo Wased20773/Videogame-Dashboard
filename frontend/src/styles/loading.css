@@ -1,0 +1,49 @@
+.orbit-circle-container {
+  width: 100px;
+  height: 30px;
+
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--High-emphasis-light-text);
+  background-color: var(--High-emphasis-light-text);
+  border-radius: 30%;
+  animation: bounce 1s infinite ease;
+}
+
+.circle-1 {
+  animation-delay: 0s;
+}
+.circle-2 {
+  animation-delay: 0.1s;
+}
+.circle-3 {
+  animation-delay: 0.2s;
+}
+.circle-4 {
+  animation-delay: 0.3s;
+}
+.circle-5 {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100%);
+    background-color: var(--Low-emphasis-light-text);
+    border: 1px solid var(--Low-emphasis-light-text);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 import ColumnChart from "../components/Charts/ColumnChart.jsx";
 import FilterPanel from "../components/Charts/FilterPanel.jsx";
 import "../styles/chart.css";
+import LoadingData from "../components/LoadingData.jsx";
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/
 
@@ -252,7 +253,7 @@ const MostCommon = () => {
           />
         </div>
       ) : (
-        "loading..."
+        <LoadingData />
       )}
     </div>
   );

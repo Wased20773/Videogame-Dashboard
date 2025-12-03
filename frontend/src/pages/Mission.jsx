@@ -1,5 +1,11 @@
+import LoadingData from "../components/LoadingData";
+
 const Mission = () => {
-  return <h1>Mission</h1>;
+  return (
+    <div>
+      <h1>Mission</h1>
+    </div>
+  );
 };
 
 export default Mission;

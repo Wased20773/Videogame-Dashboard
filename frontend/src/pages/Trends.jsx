@@ -2,12 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Histogram from "../components/Charts/Histogram.jsx";
 import FilterPanel from "../components/Charts/FilterPanel.jsx";
+import LoadingData from "../components/LoadingData.jsx";
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/
 
 // Release dates per year
 const Trends = () => {
-  const [yearLength, setYearLength] = useState(10);
   const [releaseData, setreleaseData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ const Trends = () => {
     try {
       const now = new Date();
       const counts = [];
-
+      const yearLength = 10;
       for (let i = 0; i < yearLength; i++) {
         // Calculate the range for this year
         const end = Math.floor(
@@ -66,7 +66,7 @@ const Trends = () => {
           </div>
         </div>
       ) : (
-        <p>loading...</p>
+        <LoadingData />
       )}
     </div>
   );

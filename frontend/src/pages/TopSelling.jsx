@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Table from "../components/Charts/Table";
+import LoadingData from "../components/LoadingData";
 
 const limit = 10;
 
@@ -59,7 +60,7 @@ const TopSelling = () => {
 
       {/* display table here */}
       <div>
-        {loading && !error && <p>loading entries...</p>}
+        {loading && !error && <LoadingData />}
         {error && `${error}`}
         {!loading && !error && <Table data={topSellers} limit={limit} />}
       </div>

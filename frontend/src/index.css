@@ -74,6 +74,9 @@
   --Table-bg-row-dark: rgb(59, 59, 59);
   --Table-header-bg: rgb(20, 20, 20);
   --Table-row-hover: rgb(196, 196, 196);
+
+  /* --- Loading --- */
+  --circle-size: 10px;
 }
 
 html,

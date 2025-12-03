@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import "../../styles/chart.css";
 import {
   Chart as ChartJS,
@@ -10,7 +8,6 @@ import {
   Title,
   Tooltip,
   Legend,
-  plugins,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
