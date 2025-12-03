@@ -61,7 +61,9 @@ const Trends = () => {
       <h1>Trends</h1>
       {!loading ? (
         <div className="chart-container">
-          <Histogram dates={releaseData} />
+          <div>
+            <Histogram dates={releaseData} />
+          </div>
         </div>
       ) : (
         <p>loading...</p>

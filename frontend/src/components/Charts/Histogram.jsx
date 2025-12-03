@@ -71,7 +71,9 @@ const Histogram = ({ dates }) => {
         Release Year Trend In The Past 10 Years
       </h2>
       <p>Total Collected: {totalCount}</p>
-      <Line data={data} options={options} />
+      <div className="chart-sizing">
+        <Line data={data} options={options} />
+      </div>
     </div>
   );
 };

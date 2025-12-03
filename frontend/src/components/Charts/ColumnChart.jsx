@@ -38,11 +38,6 @@ const ColumnChart = ({ tagCount, displayOption, selectedTag }) => {
     .slice(10, tagCount.length)
     .map((entry) => entry[1]);
 
-  let counts_others_sum = 0;
-  counts_others.forEach((c) => {
-    counts_others_sum += c;
-  });
-
   const data_short = {
     labels: [...labels],
     datasets: [
@@ -123,11 +118,15 @@ const ColumnChart = ({ tagCount, displayOption, selectedTag }) => {
       >
         Most Common {selectedTag}
       </h2>
-      <div>Total Collected: {total_sum}</div>
+      <p>Total Collected: {total_sum}</p>
       {displayOption === "no" ? (
-        <Bar data={data_short} options={options} />
+        <div className="chart-sizing">
+          <Bar data={data_short} options={options} />
+        </div>
       ) : (
-        <Bar data={data_long} options={options} />
+        <div className="chart-sizing">
+          <Bar data={data_long} options={options} />
+        </div>
       )}
     </div>
   );

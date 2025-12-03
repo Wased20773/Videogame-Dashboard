@@ -243,6 +243,7 @@ const MostCommon = () => {
             displayOption={displayOption}
             selectedTag={selectedTag}
           />
+
           <FilterPanel
             selectedTag={selectedTag}
             setSelectedTag={setSelectedTag}
