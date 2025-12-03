@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Histogram from "../components/Charts/Histogram.jsx";
-import FilterPanel from "../components/Charts/FilterPanel.jsx";
 import LoadingData from "../components/LoadingData.jsx";
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/

@@ -1,5 +1,5 @@
 import SteamLogoPNG from "../steam.png";
-import IGDBLogoPNG from "../igdb.png";
+import IGDBLogoPNG from "../IGDB.png";
 
 // Holds a static collection of API info
 export const APIinfo = {

@@ -1,5 +1,3 @@
-import LoadingData from "../components/LoadingData";
-
 const Mission = () => {
   return (
     <div>

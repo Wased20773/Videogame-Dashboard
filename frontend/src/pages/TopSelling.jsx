@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Table from "../components/Charts/Table";
-import LoadingData from "../components/LoadingData";
+import Table from "../components/Charts/Table.jsx";
+import LoadingData from "../components/LoadingData.jsx";
 
 const limit = 10;
 
