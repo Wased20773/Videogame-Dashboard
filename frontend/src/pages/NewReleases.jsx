@@ -4,6 +4,7 @@ import Table from "../components/Charts/Table.jsx";
 import LoadingData from "../components/LoadingData.jsx";
 
 const limit = 10;
+const RenderSubDomain = "https://videogame-dashboard.onrender.com";
 
 const NewReleases = () => {
   const [newReleases, setNewReleases] = useState([]);
@@ -13,7 +14,9 @@ const NewReleases = () => {
   const fetchFeaturedCategories = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/steam/featuredcategories");
+      const response = await axios.get(
+        `${RenderSubDomain}/api/steam/featuredcategories`
+      );
       const newReleases = response.data.new_releases.items;
 
       // Information we want
@@ -21,7 +24,7 @@ const NewReleases = () => {
       const data = await Promise.all(
         newReleases.map(async (game) => {
           const appData = await axios.get(
-            `/api/steam/appdetails?appids=${game.id}`
+            `${RenderSubDomain}/api/steam/appdetails?appids=${game.id}`
           );
 
           return {

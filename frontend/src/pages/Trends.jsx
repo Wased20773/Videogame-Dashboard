@@ -5,6 +5,8 @@ import LoadingData from "../components/LoadingData.jsx";
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/
 
+const RenderSubDomain = "https://videogame-dashboard.onrender.com";
+
 // Release dates per year
 const Trends = () => {
   const [releaseData, setreleaseData] = useState([]);
@@ -28,7 +30,7 @@ const Trends = () => {
         );
 
         const response = await axios.post(
-          "/api/igdb/release_dates/count",
+          `${RenderSubDomain}/api/igdb/release_dates/count`,
           `where date >= ${start} & date <= ${end};`,
           { headers: { "Content-Type": "text/plain" } }
         );

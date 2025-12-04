@@ -7,6 +7,8 @@ import LoadingData from "../components/LoadingData.jsx";
 // For finding UNIX Timestamp
 // https://www.unixtimestamp.com/
 
+const RenderSubDomain = "https://videogame-dashboard.onrender.com";
+
 // genres, themes, game_types, language_supports, platforms, player_perspectives;
 const MostCommon = () => {
   // Collections
@@ -41,36 +43,52 @@ const MostCommon = () => {
         platformsRes,
         perspectivesRes,
       ] = await Promise.all([
-        axios.post("/api/igdb/genres", `f id,name;l 500;`, {
+        axios.post(`${RenderSubDomain}/api/igdb/genres`, `f id,name;l 500;`, {
           headers: {
             "Content-Type": "text/plain",
           },
         }),
-        axios.post("/api/igdb/themes", `f id,name;l 500;`, {
+        axios.post(`${RenderSubDomain}/api/igdb/themes`, `f id,name;l 500;`, {
           headers: {
             "Content-Type": "text/plain",
           },
         }),
-        axios.post("/api/igdb/game_types", `f id,type;l 500;`, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        }),
-        axios.post("/api/igdb/languages", `f id,name;l 500;`, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        }),
-        axios.post("/api/igdb/platforms", `f id,name;l 500;`, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        }),
-        axios.post("/api/igdb/player_perspectives", `f id,name;l 500;`, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        }),
+        axios.post(
+          `${RenderSubDomain}/api/igdb/game_types`,
+          `f id,type;l 500;`,
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        ),
+        axios.post(
+          `${RenderSubDomain}/api/igdb/languages`,
+          `f id,name;l 500;`,
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        ),
+        axios.post(
+          `${RenderSubDomain}/api/igdb/platforms`,
+          `f id,name;l 500;`,
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        ),
+        axios.post(
+          `${RenderSubDomain}/api/igdb/player_perspectives`,
+          `f id,name;l 500;`,
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        ),
       ]);
 
       // Set Genres
@@ -132,11 +150,15 @@ const MostCommon = () => {
         `;
 
       try {
-        const response = await axios.post("/api/igdb/games", query, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        });
+        const response = await axios.post(
+          `${RenderSubDomain}/api/igdb/games`,
+          query,
+          {
+            headers: {
+              "Content-Type": "text/plain",
+            },
+          }
+        );
         allGames.push(...response.data);
 
         if (response.data.length < limit) {
